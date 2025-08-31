@@ -115,7 +115,11 @@ in
 
             # ROCm libraries for AMD GPU support
             pkgs.rocmPackages.rocblas # librocblas.so.4
+            pkgs.rocmPackages.rocsolver # librocsolver.so (depends on rocblas)
             pkgs.rocmPackages.rocm-runtime # Additional ROCm runtime support
+            pkgs.rocmPackages.rocsparse # librocsparse.so
+            pkgs.rocmPackages.rocfft # librocfft.so
+            # NOTE: hipblaslt excluded - only supports enterprise GPUs, not consumer RX series
           ];
       })
     );

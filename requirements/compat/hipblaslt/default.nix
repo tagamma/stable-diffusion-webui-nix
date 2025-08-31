@@ -1,13 +1,13 @@
-{ pkgs
-, python
-, pythonPkgs
-, lib
-, rocmPackages
-, stdenv
-, fetchFromGitHub
-, ...
-}:
-let
+{
+  pkgs,
+  python,
+  pythonPkgs,
+  lib,
+  rocmPackages,
+  stdenv,
+  fetchFromGitHub,
+  ...
+}: let
   src = fetchFromGitHub {
     owner = "ROCm";
     repo = "hipBLASLt";
@@ -15,17 +15,22 @@ let
     hash = "sha256-ZXiq5e6C7MU0nTpill/jCsjt1y3vwdt2xrrqCA6cCtw=";
   };
 
-  tensileLitePython = python.withPackages (ps: with ps; [
-    pyyaml
-    msgpack
-    joblib
-  ]);
+  tensileLitePython = python.withPackages (ps:
+    with ps; [
+      pyyaml
+      msgpack
+      joblib
+    ]);
 
   tensileLite = pythonPkgs.buildPythonPackage {
     name = "hiblaslt-tensilelite";
     version = "internal";
 
     src = "${src}/tensilelite";
+
+    # Fix for modern nixpkgs Python packaging requirements
+    pyproject = true;
+    build-system = with pythonPkgs; [setuptools];
 
     patches = [
       # ./always-debug-print.patch
@@ -54,59 +59,60 @@ let
   # Fix up the targets that the library actually compiles with successfully
   #
   # Check the CMakeLists.txt and look for rocm_check_target_ids
+  # NOTE: hipblaslt only supports enterprise/datacenter GPUs in ROCm 6.0.2
   tensileSupportedROCmTargets = ["gfx90a:xnack+" "gfx90a:xnack-" "gfx940" "gfx941" "gfx942"];
   enabledROCmTargets = lib.lists.intersectLists tensileSupportedROCmTargets rocmPackages.clr.gpuTargets;
 in
-stdenv.mkDerivation {
-  name = "hipblaslt";
-  version = "6.0.2";
+  stdenv.mkDerivation {
+    name = "hipblaslt";
+    version = "6.0.2";
 
-  inherit src;
+    inherit src;
 
-  nativeBuildInputs = [
-    pkgs.cmake
-    pkgs.perl
-    pkgs.git
+    nativeBuildInputs = [
+      pkgs.cmake
+      pkgs.perl
+      pkgs.git
 
-    rocmPackages.llvm.clang
-    tensileLiteEnv
-  ];
+      rocmPackages.llvm.clang
+      tensileLiteEnv
+    ];
 
-  buildInputs = [
-    pkgs.msgpack
-    rocmPackages.rocm-cmake
-    rocmPackages.clr
-    rocmPackages.hipblas
-    rocmPackages.rocblas
-  ];
+    buildInputs = [
+      pkgs.msgpack
+      rocmPackages.rocm-cmake
+      rocmPackages.clr
+      rocmPackages.hipblas
+      rocmPackages.rocblas
+    ];
 
-  patches = [
-    ./use-external-python-env.patch
-  ];
+    patches = [
+      ./use-external-python-env.patch
+    ];
 
-  unpackPhase = ''
-    runHook preUnpack
+    unpackPhase = ''
+      runHook preUnpack
 
-    unpackFile $src
-    sourceRoot="source"
+      unpackFile $src
+      sourceRoot="source"
 
-    # Make sources writeable so that the build doesn't fail
-    chmod -R u+w -- "$sourceRoot"
+      # Make sources writeable so that the build doesn't fail
+      chmod -R u+w -- "$sourceRoot"
 
-    runHook postUnpack
-  '';
+      runHook postUnpack
+    '';
 
-  cmakeFlags = [
-    (lib.cmakeFeature "CMAKE_C_COMPILER" "hipcc")
-    (lib.cmakeFeature "CMAKE_CXX_COMPILER" "hipcc")
-    (lib.cmakeFeature "AMDGPU_TARGETS" (lib.strings.concatStringsSep ";" enabledROCmTargets))
-    (lib.cmakeFeature "VIRTUALENV_HOME_DIR" "${tensileLiteEnv}")
-    (lib.cmakeFeature "VIRTUALENV_BIN_DIR" "${tensileLiteEnv}/bin")
-    (lib.cmakeFeature "Tensile_TENSILE_ROOT" "${tensileLiteEnv}")
-    (lib.cmakeFeature "Tensile_CODE_OBJECT_VERSION" "V3")
-  ];
+    cmakeFlags = [
+      (lib.cmakeFeature "CMAKE_C_COMPILER" "hipcc")
+      (lib.cmakeFeature "CMAKE_CXX_COMPILER" "hipcc")
+      (lib.cmakeFeature "AMDGPU_TARGETS" (lib.strings.concatStringsSep ";" enabledROCmTargets))
+      (lib.cmakeFeature "VIRTUALENV_HOME_DIR" "${tensileLiteEnv}")
+      (lib.cmakeFeature "VIRTUALENV_BIN_DIR" "${tensileLiteEnv}/bin")
+      (lib.cmakeFeature "Tensile_TENSILE_ROOT" "${tensileLiteEnv}")
+      (lib.cmakeFeature "Tensile_CODE_OBJECT_VERSION" "V3")
+    ];
 
-  passthru = {
-    inherit tensileLiteEnv;
-  };
-}
+    passthru = {
+      inherit tensileLiteEnv;
+    };
+  }
