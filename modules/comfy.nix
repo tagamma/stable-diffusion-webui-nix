@@ -1,12 +1,11 @@
-{ lib
-, config
-, pkgs
-, ...
-}:
-let
-  cfg = config.services.comfyUi;
-in
 {
+  lib,
+  config,
+  pkgs,
+  ...
+}: let
+  cfg = config.services.comfyUi;
+in {
   options = {
     services.comfyUi = {
       enable = lib.mkOption {
@@ -30,7 +29,7 @@ in
           :::
         '';
       };
-      
+
       group = lib.mkOption {
         type = lib.types.str;
         default = "comfy-ui";
@@ -61,8 +60,8 @@ in
 
       package = lib.mkOption {
         type = lib.types.package;
-        default = pkgs.stable-diffusion-webui.comfy.cuda;
-        example = lib.literalExpression "pkgs.stable-diffusion-webui.comfy.cuda";
+        default = pkgs.stable-diffusion-webui.comfy.rocm;
+        example = lib.literalExpression "pkgs.stable-diffusion-webui.comfy.rocm";
         description = ''
           Which package to user for the ComfyUI installation.
         '';
@@ -98,7 +97,7 @@ in
         isSystemUser = true;
 
         # Access to GPU for CUDA
-        extraGroups = [ "video" ];
+        extraGroups = ["video"];
       };
     };
 
@@ -109,9 +108,9 @@ in
     systemd.services.comfy-ui = {
       description = "powerful and modular diffusion model GUI";
 
-      after = [ "network.target" ];
-      wantedBy = [ "multi-user.target" ];
-      
+      after = ["network.target"];
+      wantedBy = ["multi-user.target"];
+
       unitConfig.RequiresMountsFor = cfg.dataDir;
 
       script = ''
@@ -135,11 +134,11 @@ in
           User = cfg.user;
           Group = cfg.group;
 
-          ReadWritePaths = [ cfg.dataDir ];
+          ReadWritePaths = [cfg.dataDir];
 
           CapabilityBoundingSet = "";
           NoNewPrivileges = true;
- 
+
           ProtectSystem = "strict";
           ProtectHome = true;
           PrivateTmp = true;
@@ -147,13 +146,13 @@ in
           ProtectKernelTunables = true;
           ProtectKernelModules = true;
           ProtectControlGroups = true;
-          RestrictAddressFamilies = [ "AF_UNIX" "AF_INET" "AF_INET6" ];
+          RestrictAddressFamilies = ["AF_UNIX" "AF_INET" "AF_INET6"];
           LockPersonality = true;
           MemoryDenyWriteExecute = true;
           RestrictRealtime = true;
           RestrictSUIDSGID = true;
           PrivateMounts = true;
- 
+
           SystemCallArchitectures = "native";
           SystemCallFilter = "@system-service";
         }

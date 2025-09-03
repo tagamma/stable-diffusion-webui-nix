@@ -124,21 +124,20 @@ in {
       {name = "sageattention";}
       {name = "timm";}
 
-      # ROCm-specific torch versions
+      # ROCm-specific torch versions - stable PyTorch 2.8.0 with ROCm 6.4
       {
         name = "torch";
-        spec = "2.9.0.dev20250827+rocm6.4";
+        spec = "2.8.0+rocm6.4";
       }
       {
         name = "torchvision";
-        spec = "0.24.0.dev20250827+rocm6.4";
+        spec = "0.23.0+rocm6.4";
       }
     ];
 
-    additionalPipArgs = ["--extra-index-url" "https://download.pytorch.org/whl/nightly/rocm6.4/"];
+    additionalPipArgs = ["--extra-index-url" "https://download.pytorch.org/whl/rocm6.4/"];
 
-    # AI-TODO: Create install-instructions-rocm.json for ComfyUI
-    installInstructions = ./install-instructions-cuda.json; # Temporary fallback
+    installInstructions = ./install-instructions-rocm.json;
 
     requirementsFileName = "requirements.txt";
 

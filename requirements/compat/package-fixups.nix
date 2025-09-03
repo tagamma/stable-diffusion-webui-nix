@@ -217,8 +217,10 @@ in
 
     # ROCm specific stuff
     pytorch-triton-rocm = withExtraDependencies prev.pytorch-triton-rocm [
-      pkgs.zlib
-      pkgs.zstd
+      pkgs.zlib # libz.so.1
+      pkgs.zstd # libzstd.so.1
+      pkgs.xz # liblzma.so.5
+      pkgs.bzip2 # libbz2.so.1
     ];
 
     # Extra packages

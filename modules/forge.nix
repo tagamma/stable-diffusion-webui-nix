@@ -3,17 +3,18 @@
   config,
   pkgs,
   ...
-}:
-let
+}: let
   inherit (builtins) toString;
-  inherit (lib)
+  inherit
+    (lib)
     mkEnableOption
     mkOption
     literalExpression
     optionalAttrs
     mkIf
     ;
-  inherit (lib.types)
+  inherit
+    (lib.types)
     str
     path
     port
@@ -21,8 +22,7 @@ let
     ;
   inherit (lib.strings) escapeShellArg optionalString;
   cfg = config.services.sd-webui-forge;
-in
-{
+in {
   options.services.sd-webui-forge = {
     enable = mkEnableOption "the stable diffusion Forge WebUI";
 
@@ -69,8 +69,8 @@ in
 
     package = mkOption {
       type = package;
-      default = pkgs.stable-diffusion-webui.forge.cuda;
-      example = literalExpression "pkgs.stable-diffusion-webui.forge.cuda";
+      default = pkgs.stable-diffusion-webui.forge.rocm;
+      example = literalExpression "pkgs.stable-diffusion-webui.forge.rocm";
       description = ''
         Which package to user for the ComfyUI installation.
       '';
@@ -102,24 +102,24 @@ in
         isSystemUser = true;
 
         # Access to GPU for CUDA
-        extraGroups = [ "video" ];
+        extraGroups = ["video"];
       };
     };
 
     users.groups = lib.optionalAttrs (cfg.group == "sd-webui-forge") {
-      sd-webui-forge = { };
+      sd-webui-forge = {};
     };
 
     systemd.services.sd-webui-forge = {
       description = "powerful and modular diffusion model GUI";
 
-      after = [ "network.target" ];
-      wantedBy = [ "multi-user.target" ];
+      after = ["network.target"];
+      wantedBy = ["multi-user.target"];
 
       unitConfig.RequiresMountsFor = cfg.dataDir;
 
       # Needed or forge will not start
-      path = [ pkgs.git ];
+      path = [pkgs.git];
 
       script = ''
         exec ${cfg.package}/bin/stable-diffusion-webui \
@@ -138,7 +138,7 @@ in
           User = cfg.user;
           Group = cfg.group;
 
-          ReadWritePaths = [ cfg.dataDir ];
+          ReadWritePaths = [cfg.dataDir];
 
           CapabilityBoundingSet = "";
           NoNewPrivileges = true;
