@@ -32,19 +32,18 @@ in {
     additionalRequirements =
       raw.additionalRequirements
       ++ [
-        # NOTE: Use specific nightly PyTorch with ROCm 6.4 for RX 9000 series support
+        # NOTE: Use stable PyTorch 2.8.0 with ROCm 6.4
         {
           name = "torch";
-          spec = "2.9.0.dev20250827+rocm6.4"; # Latest available ROCm 6.4 nightly
+          spec = "2.8.0+rocm6.4";
         }
         {
           name = "torchvision";
-          spec = "0.24.0.dev20250827+rocm6.4"; # Compatible torchvision version
+          spec = "0.23.0+rocm6.4";
         }
-        # TODO: Re-enable triton once build issues are resolved
-        # Triton provides GPU kernel optimizations but isn't required for basic functionality
+        # AI-NOTE: Triton issues will be handled by global overlay
       ];
-    additionalPipArgs = ["--extra-index-url" "https://download.pytorch.org/whl/nightly/rocm6.4/"];
+    additionalPipArgs = ["--extra-index-url" "https://download.pytorch.org/whl/rocm6.4/"];
 
     installInstructions = ./install-instructions-rocm.json;
 

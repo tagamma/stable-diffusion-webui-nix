@@ -88,7 +88,7 @@
         },
         "is_wheel": true,
         "urls": [
-          "https://download.pytorch.org/whl/nightly/aiohttp-3.12.15-cp311-cp311-manylinux_2_17_x86_64.manylinux2014_x86_64.whl"
+          "https://files.pythonhosted.org/packages/c6/82/1ddf0ea4f2f3afe79dffed5e8a246737cff6cbe781887a6a170299e33204/aiohttp-3.12.15-cp311-cp311-manylinux_2_17_x86_64.manylinux2014_x86_64.whl"
         ]
       },
       "version": "3.12.15"
@@ -106,7 +106,7 @@
         },
         "is_wheel": true,
         "urls": [
-          "https://download.pytorch.org/whl/nightly/aiosignal-1.4.0-py3-none-any.whl"
+          "https://files.pythonhosted.org/packages/fb/76/641ae371508676492379f16e2fa48f4e2c11741bd63c48be4b12a6b09cba/aiosignal-1.4.0-py3-none-any.whl"
         ]
       },
       "version": "1.4.0"
@@ -136,7 +136,7 @@
         },
         "is_wheel": false,
         "urls": [
-          "https://download.pytorch.org/whl/nightly/antlr4_python3_runtime-4.9.3.tar.gz"
+          "https://files.pythonhosted.org/packages/3e/38/7859ff46355f76f8d19459005ca000b6e7012f2f1ca597746cbcd1fbfe5e/antlr4-python3-runtime-4.9.3.tar.gz"
         ]
       },
       "version": "4.9.3"
@@ -169,7 +169,7 @@
         },
         "is_wheel": true,
         "urls": [
-          "https://download.pytorch.org/whl/nightly/attrs-25.3.0-py3-none-any.whl"
+          "https://files.pythonhosted.org/packages/77/06/bb80f5f86020c4551da315d78b3ab75e8228f89f0162f2c3a819e407941a/attrs-25.3.0-py3-none-any.whl"
         ]
       },
       "version": "25.3.0"
@@ -222,7 +222,7 @@
         },
         "is_wheel": true,
         "urls": [
-          "https://download.pytorch.org/whl/nightly/certifi-2025.8.3-py3-none-any.whl"
+          "https://files.pythonhosted.org/packages/e5/48/1549795ba7742c948d2ad169c1c8cdbae65bc450d6cd753d124b17c8cd32/certifi-2025.8.3-py3-none-any.whl"
         ]
       },
       "version": "2025.8.3"
@@ -237,7 +237,7 @@
         },
         "is_wheel": true,
         "urls": [
-          "https://download.pytorch.org/whl/nightly/charset_normalizer-3.4.3-cp311-cp311-manylinux2014_x86_64.manylinux_2_17_x86_64.manylinux_2_28_x86_64.whl"
+          "https://files.pythonhosted.org/packages/87/df/b7737ff046c974b183ea9aa111b74185ac8c3a326c6262d413bd5a1b8c69/charset_normalizer-3.4.3-cp311-cp311-manylinux2014_x86_64.manylinux_2_17_x86_64.manylinux_2_28_x86_64.whl"
         ]
       },
       "version": "3.4.3"
@@ -328,7 +328,7 @@
         },
         "is_wheel": true,
         "urls": [
-          "https://download.pytorch.org/whl/nightly/cycler-0.12.1-py3-none-any.whl"
+          "https://files.pythonhosted.org/packages/e7/05/c19819d5e3d95294a6f5947fb9b9629efb316b96de511b418c53d245aae6/cycler-0.12.1-py3-none-any.whl"
         ]
       },
       "version": "0.12.1"
@@ -474,7 +474,7 @@
         },
         "is_wheel": true,
         "urls": [
-          "https://download.pytorch.org/whl/nightly/filelock-3.19.1-py3-none-any.whl"
+          "https://files.pythonhosted.org/packages/42/14/42b2651a2f46b022ccd948bca9f2d5af0fd8929c4eec235b8d6d844fbe67/filelock-3.19.1-py3-none-any.whl"
         ]
       },
       "version": "3.19.1"
@@ -523,7 +523,7 @@
         },
         "is_wheel": true,
         "urls": [
-          "https://download.pytorch.org/whl/nightly/frozenlist-1.7.0-cp311-cp311-manylinux_2_5_x86_64.manylinux1_x86_64.manylinux_2_17_x86_64.manylinux2014_x86_64.whl"
+          "https://files.pythonhosted.org/packages/4d/83/220a374bd7b2aeba9d0725130665afe11de347d95c3620b9b82cc2fcab97/frozenlist-1.7.0-cp311-cp311-manylinux_2_5_x86_64.manylinux1_x86_64.manylinux_2_17_x86_64.manylinux2014_x86_64.whl"
         ]
       },
       "version": "1.7.0"
@@ -542,7 +542,7 @@
         },
         "is_wheel": true,
         "urls": [
-          "https://download.pytorch.org/whl/nightly/fsspec-2025.7.0-py3-none-any.whl"
+          "https://files.pythonhosted.org/packages/2f/e0/014d5d9d7a4564cf1c40b5039bc882db69fd881111e03ab3657ac0b218e2/fsspec-2025.7.0-py3-none-any.whl"
         ]
       },
       "version": "2025.7.0"
@@ -786,7 +786,7 @@
         },
         "is_wheel": true,
         "urls": [
-          "https://download.pytorch.org/whl/nightly/idna-3.10-py3-none-any.whl"
+          "https://files.pythonhosted.org/packages/76/c6/c88e154df9c4e1a2a66ccf0005a88dfb2650c1dffb6f5ce603dfbd452ce3/idna-3.10-py3-none-any.whl"
         ]
       },
       "version": "3.10"
@@ -868,7 +868,7 @@
         },
         "is_wheel": true,
         "urls": [
-          "https://download.pytorch.org/whl/nightly/jinja2-3.1.6-py3-none-any.whl"
+          "https://files.pythonhosted.org/packages/62/a1/3d680cbfd5f4b8f15abc1d571870c5fc3e594bb582bc3b64ea099db13e56/jinja2-3.1.6-py3-none-any.whl"
         ]
       },
       "version": "3.1.6"
@@ -1083,7 +1083,7 @@
         },
         "is_wheel": true,
         "urls": [
-          "https://download.pytorch.org/whl/nightly/MarkupSafe-2.1.5-cp311-cp311-manylinux_2_17_x86_64.manylinux2014_x86_64.whl"
+          "https://download.pytorch.org/whl/MarkupSafe-2.1.5-cp311-cp311-manylinux_2_17_x86_64.manylinux2014_x86_64.whl"
         ]
       },
       "version": "2.1.5"
@@ -1104,14 +1104,14 @@
       "name": "matplotlib",
       "source": {
         "hashes": {
-          "sha256": "080c3676a56b8ee1c762bcf8fca3fe709daa1ee23e6ef06ad9f3fc17332f2d2a"
+          "sha256": "942a8de2b5bfff1de31d95722f702e2966b8a7e31f4e68f7cd963c7cd8861cf6"
         },
         "is_wheel": true,
         "urls": [
-          "https://files.pythonhosted.org/packages/1d/1e/5e187a30cc673a3e384f3723e5f3c416033c1d8d5da414f82e4e731128ea/matplotlib-3.10.5-cp311-cp311-manylinux2014_x86_64.manylinux_2_17_x86_64.whl"
+          "https://files.pythonhosted.org/packages/d3/29/4a8650a3dcae97fa4f375d46efcb25920d67b512186f8a6788b896062a81/matplotlib-3.10.6-cp311-cp311-manylinux2014_x86_64.manylinux_2_17_x86_64.whl"
         ]
       },
-      "version": "3.10.5"
+      "version": "3.10.6"
     },
     {
       "dependencies": [],
@@ -1138,7 +1138,7 @@
         },
         "is_wheel": true,
         "urls": [
-          "https://download.pytorch.org/whl/nightly/mpmath-1.3.0-py3-none-any.whl"
+          "https://download.pytorch.org/whl/mpmath-1.3.0-py3-none-any.whl"
         ]
       },
       "version": "1.3.0"
@@ -1153,7 +1153,7 @@
         },
         "is_wheel": true,
         "urls": [
-          "https://download.pytorch.org/whl/nightly/multidict-6.6.4-cp311-cp311-manylinux2014_x86_64.manylinux_2_17_x86_64.manylinux_2_28_x86_64.whl"
+          "https://files.pythonhosted.org/packages/00/6e/fac58b1072a6fc59af5e7acb245e8754d3e1f97f4f808a6559951f72a0d4/multidict-6.6.4-cp311-cp311-manylinux2014_x86_64.manylinux_2_17_x86_64.manylinux_2_28_x86_64.whl"
         ]
       },
       "version": "6.6.4"
@@ -1168,7 +1168,7 @@
         },
         "is_wheel": true,
         "urls": [
-          "https://download.pytorch.org/whl/nightly/networkx-3.5-py3-none-any.whl"
+          "https://files.pythonhosted.org/packages/eb/8d/776adee7bbf76365fdd7f2552710282c79a4ead5d2a46408c9043a2b70ba/networkx-3.5-py3-none-any.whl"
         ]
       },
       "version": "3.5"
@@ -1393,14 +1393,14 @@
       "name": "polars",
       "source": {
         "hashes": {
-          "sha256": "c9a9b9668ef310e5a77a7e7daa9c753874779c8da52e93f654bfd7953eb4b60b"
+          "sha256": "bd9b76abc22fdb20a005c629ee8c056b0545433f18854b929fb54e351d1b98ee"
         },
         "is_wheel": true,
         "urls": [
-          "https://files.pythonhosted.org/packages/ab/8a/6f56af7e535c34c95decc8654786bfce4632ba32817dc2f8bad18571ef9a/polars-1.32.3-cp39-abi3-manylinux_2_17_x86_64.manylinux2014_x86_64.whl"
+          "https://files.pythonhosted.org/packages/f2/e2/485c87047e8aaae8dae4e9881517697616b7f79b14132961fbccfc386b29/polars-1.33.0-cp39-abi3-manylinux_2_17_x86_64.manylinux2014_x86_64.whl"
         ]
       },
-      "version": "1.32.3"
+      "version": "1.33.0"
     },
     {
       "dependencies": [],
@@ -1600,7 +1600,23 @@
       },
       "version": "1.9.4"
     },
-
+    {
+      "dependencies": [
+        "setuptools"
+      ],
+      "enabled_extras": [],
+      "name": "pytorch-triton-rocm",
+      "source": {
+        "hashes": {
+          "sha256": "b0362725d8e16d185251e3dcd48455ebf9cdaad2c26052bb47ef08a1d687ed20"
+        },
+        "is_wheel": true,
+        "urls": [
+          "https://download.pytorch.org/whl/pytorch_triton_rocm-3.4.0-cp311-cp311-linux_x86_64.whl"
+        ]
+      },
+      "version": "3.4.0"
+    },
     {
       "dependencies": [],
       "enabled_extras": [],
@@ -1611,7 +1627,7 @@
         },
         "is_wheel": true,
         "urls": [
-          "https://download.pytorch.org/whl/nightly/pytz-2025.2-py2.py3-none-any.whl"
+          "https://files.pythonhosted.org/packages/81/c4/34e93fe5f5429d7570ec1fa436f1986fb1f00c3e0f43a589fe2bbcd22c3f/pytz-2025.2-py2.py3-none-any.whl"
         ]
       },
       "version": "2025.2"
@@ -1643,7 +1659,7 @@
         },
         "is_wheel": true,
         "urls": [
-          "https://download.pytorch.org/whl/nightly/PyYAML-6.0.2-cp311-cp311-manylinux_2_17_x86_64.manylinux2014_x86_64.whl"
+          "https://files.pythonhosted.org/packages/75/e4/2c27590dfc9992f73aabbeb9241ae20220bd9452df27483b6e56d3975cc5/PyYAML-6.0.2-cp311-cp311-manylinux_2_17_x86_64.manylinux2014_x86_64.whl"
         ]
       },
       "version": "6.0.2"
@@ -1673,14 +1689,14 @@
       "name": "regex",
       "source": {
         "hashes": {
-          "sha256": "37555e4ae0b93358fa7c2d240a4291d4a4227cc7c607d8f85596cdb08ec0a083"
+          "sha256": "91892a7a9f0a980e4c2c85dd19bc14de2b219a3a8867c4b5664b9f972dcc0c78"
         },
         "is_wheel": true,
         "urls": [
-          "https://download.pytorch.org/whl/nightly/regex-2025.7.34-cp311-cp311-manylinux2014_x86_64.manylinux_2_17_x86_64.manylinux_2_28_x86_64.whl"
+          "https://files.pythonhosted.org/packages/8a/a7/a470e7bc8259c40429afb6d6a517b40c03f2f3e455c44a01abc483a1c512/regex-2025.9.1-cp311-cp311-manylinux2014_x86_64.manylinux_2_17_x86_64.manylinux_2_28_x86_64.whl"
         ]
       },
-      "version": "2025.7.34"
+      "version": "2025.9.1"
     },
     {
       "dependencies": [
@@ -1756,14 +1772,14 @@
       "name": "ruff",
       "source": {
         "hashes": {
-          "sha256": "1f68433c4fbc63efbfa3ba5db31727db229fa4e61000f452c540474b03de52a9"
+          "sha256": "4fc58f9266d62c6eccc75261a665f26b4ef64840887fc6cbc552ce5b29f96cc8"
         },
         "is_wheel": true,
         "urls": [
-          "https://files.pythonhosted.org/packages/c0/1d/b4207ec35e7babaee62c462769e77457e26eb853fbdc877af29417033333/ruff-0.12.10-py3-none-manylinux_2_17_x86_64.manylinux2014_x86_64.whl"
+          "https://files.pythonhosted.org/packages/80/22/3c6cef96627f89b344c933781ed38329bfb87737aa438f15da95907cbfd5/ruff-0.12.11-py3-none-manylinux_2_17_x86_64.manylinux2014_x86_64.whl"
         ]
       },
-      "version": "0.12.10"
+      "version": "0.12.11"
     },
     {
       "dependencies": [],
@@ -1847,7 +1863,7 @@
         },
         "is_wheel": true,
         "urls": [
-          "https://download.pytorch.org/whl/nightly/sentencepiece-0.2.1-cp311-cp311-manylinux_2_27_x86_64.manylinux_2_28_x86_64.whl"
+          "https://files.pythonhosted.org/packages/ef/66/fb191403ade791ad2c3c1e72fe8413e63781b08cfa3aa4c9dfc536d6e795/sentencepiece-0.2.1-cp311-cp311-manylinux_2_27_x86_64.manylinux_2_28_x86_64.whl"
         ]
       },
       "version": "0.2.1"
@@ -1892,7 +1908,7 @@
         },
         "is_wheel": true,
         "urls": [
-          "https://download.pytorch.org/whl/nightly/six-1.17.0-py2.py3-none-any.whl"
+          "https://files.pythonhosted.org/packages/b7/ce/149a00dd41f10bc29e5921b496af8b574d8413afcd5e30dfa0ed46c2cc5e/six-1.17.0-py2.py3-none-any.whl"
         ]
       },
       "version": "1.17.0"
@@ -2000,7 +2016,7 @@
         },
         "is_wheel": true,
         "urls": [
-          "https://download.pytorch.org/whl/nightly/sympy-1.14.0-py3-none-any.whl"
+          "https://files.pythonhosted.org/packages/a2/09/77d55d46fd61b4a135c444fc97158ef34a095e5681d0a6c10b75bf356191/sympy-1.14.0-py3-none-any.whl"
         ]
       },
       "version": "1.14.0"
@@ -2098,6 +2114,7 @@
         "fsspec",
         "jinja2",
         "networkx",
+        "pytorch-triton-rocm",
         "sympy",
         "typing-extensions"
       ],
@@ -2105,14 +2122,14 @@
       "name": "torch",
       "source": {
         "hashes": {
-          "sha256": "bde61bf6e4a0e0f9bf666fd2be86660029bc731ad1944a0e57cba1eee4525dd4"
+          "sha256": "2d35c37d15a0eb61ceab94dffae9399cab1b4a0d64668e4405025b5ce65df033"
         },
         "is_wheel": true,
         "urls": [
-          "https://download.pytorch.org/whl/nightly/rocm6.4/torch-2.9.0.dev20250827%2Brocm6.4-cp311-cp311-manylinux_2_28_x86_64.whl"
+          "https://download.pytorch.org/whl/rocm6.4/torch-2.8.0%2Brocm6.4-cp311-cp311-manylinux_2_28_x86_64.whl"
         ]
       },
-      "version": "2.9.0.dev20250827+rocm6.4"
+      "version": "2.8.0+rocm6.4"
     },
     {
       "dependencies": [
@@ -2182,14 +2199,14 @@
       "name": "torchvision",
       "source": {
         "hashes": {
-          "sha256": "0ac6b9723ffb710e1198fcdcdf6af8b981c2edc942c335abe031e4f8a23cc99e"
+          "sha256": "23c049987ed53eedbbb5957b720cfcad0f4c1746be044b85dc6664f1b62716d0"
         },
         "is_wheel": true,
         "urls": [
-          "https://download.pytorch.org/whl/nightly/rocm6.4/torchvision-0.24.0.dev20250827%2Brocm6.4-cp311-cp311-manylinux_2_28_x86_64.whl"
+          "https://download.pytorch.org/whl/rocm6.4/torchvision-0.23.0%2Brocm6.4-cp311-cp311-manylinux_2_28_x86_64.whl"
         ]
       },
-      "version": "0.24.0.dev20250827+rocm6.4"
+      "version": "0.23.0+rocm6.4"
     },
     {
       "dependencies": [],
@@ -2258,14 +2275,14 @@
       "name": "typer",
       "source": {
         "hashes": {
-          "sha256": "90ee01cb02d9b8395ae21ee3368421faf21fa138cb2a541ed369c08cec5237c9"
+          "sha256": "643919a79182ab7ac7581056d93c6a2b865b026adf2872c4d02c72758e6f095b"
         },
         "is_wheel": true,
         "urls": [
-          "https://files.pythonhosted.org/packages/2d/76/06dbe78f39b2203d2a47d5facc5df5102d0561e2807396471b5f7c5a30a1/typer-0.16.1-py3-none-any.whl"
+          "https://files.pythonhosted.org/packages/ca/e8/b3d537470e8404659a6335e7af868e90657efb73916ef31ddf3d8b9cb237/typer-0.17.3-py3-none-any.whl"
         ]
       },
-      "version": "0.16.1"
+      "version": "0.17.3"
     },
     {
       "dependencies": [],
@@ -2292,7 +2309,7 @@
         },
         "is_wheel": true,
         "urls": [
-          "https://download.pytorch.org/whl/nightly/tzdata-2025.2-py2.py3-none-any.whl"
+          "https://files.pythonhosted.org/packages/5c/23/c7abc0ca0a1526a0774eca151daeb8de62ec457e77262b66b359c3c7679e/tzdata-2025.2-py2.py3-none-any.whl"
         ]
       },
       "version": "2025.2"
@@ -2317,14 +2334,14 @@
       "name": "ultralytics",
       "source": {
         "hashes": {
-          "sha256": "3b354fafcf76c021c583ee6af9c01750e14f1aee8a93fa80a9a746bce6af17e1"
+          "sha256": "eb44523e3e0e6a4cf56b0bafee3baa9f821f9dba9e049b67921e2cbfc5855c4b"
         },
         "is_wheel": true,
         "urls": [
-          "https://files.pythonhosted.org/packages/de/75/47dd77bd7997dfb81cb6b7a82bad45ee4d5a8c62a7f4e9bcd3a3e633598a/ultralytics-8.3.187-py3-none-any.whl"
+          "https://files.pythonhosted.org/packages/88/13/3f01a04f226fcf9e94dd0ff639e615b488515bb2d27a8b91340dc860d7b3/ultralytics-8.3.191-py3-none-any.whl"
         ]
       },
-      "version": "8.3.187"
+      "version": "8.3.191"
     },
     {
       "dependencies": [
@@ -2354,7 +2371,7 @@
         },
         "is_wheel": true,
         "urls": [
-          "https://download.pytorch.org/whl/nightly/urllib3-2.5.0-py3-none-any.whl"
+          "https://files.pythonhosted.org/packages/a7/c2/fe1e52489ae3122415c51f387e221dd0773709bad6c6cdaa599e8a2c5185/urllib3-2.5.0-py3-none-any.whl"
         ]
       },
       "version": "2.5.0"
@@ -2421,7 +2438,7 @@
         },
         "is_wheel": true,
         "urls": [
-          "https://download.pytorch.org/whl/nightly/yarl-1.20.1-cp311-cp311-manylinux_2_17_x86_64.manylinux2014_x86_64.whl"
+          "https://files.pythonhosted.org/packages/00/70/8f78a95d6935a70263d46caa3dd18e1f223cf2f2ff2037baa01a22bc5b22/yarl-1.20.1-cp311-cp311-manylinux_2_17_x86_64.manylinux2014_x86_64.whl"
         ]
       },
       "version": "1.20.1"
