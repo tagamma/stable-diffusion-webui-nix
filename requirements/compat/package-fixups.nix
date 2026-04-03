@@ -91,19 +91,33 @@ in
       libGL
       glib
 
-      xorg.libxcb
-      xorg.libICE
-      xorg.libSM
+      libxcb
+      libice
+      libsm
     ];
 
     # Cuda stuff
     torch = propagateLib (
       prev.torch.overridePythonAttrs (prev: {
         # Will be added by pkgs.autoAddDriverRunpath
-        autoPatchelfIgnoreMissingDeps = ["libcuda.so.1"];
+        # librocblas.so.4 is bundled as librocblas.so (unversioned) in the wheel
+        autoPatchelfIgnoreMissingDeps = ["libcuda.so.1" "librocblas.so.4"];
         nativeBuildInputs = (prev.nativeBuildInputs or []) ++ [pkgs.autoAddDriverRunpath];
 
-        # Additional dependencies for ROCm 7.2 wheels
+        # buildInputs is needed for autopatchelf to find native libraries
+        buildInputs = (prev.buildInputs or []) ++ [
+          pkgs.zlib
+          pkgs.zstd
+          pkgs.xz
+          pkgs.bzip2
+          pkgs.rocmPackages.rocblas
+          pkgs.rocmPackages.rocsolver
+          pkgs.rocmPackages.rocm-runtime
+          pkgs.rocmPackages.rocsparse
+          pkgs.rocmPackages.rocfft
+        ];
+
+        # Additional dependencies for ROCm 7.2 wheels (runtime propagation)
         dependencies =
           (prev.dependencies or [])
           ++ [
@@ -114,13 +128,70 @@ in
             pkgs.bzip2 # libbz2.so.1
 
             # ROCm libraries for AMD GPU support
-            pkgs.rocmPackages.rocblas # librocblas.so.4
-            pkgs.rocmPackages.rocsolver # librocsolver.so (depends on rocblas)
-            pkgs.rocmPackages.rocm-runtime # Additional ROCm runtime support
-            pkgs.rocmPackages.rocsparse # librocsparse.so
-            pkgs.rocmPackages.rocfft # librocfft.so
+            pkgs.rocmPackages.rocblas
+            pkgs.rocmPackages.rocsolver
+            pkgs.rocmPackages.rocm-runtime
+            pkgs.rocmPackages.rocsparse
+            pkgs.rocmPackages.rocfft
             # NOTE: hipblaslt excluded - only supports enterprise GPUs, not consumer RX series
           ];
+      })
+    );
+
+    torchvision = propagateLib (
+      prev.torchvision.overridePythonAttrs (prevAttrs: {
+        autoPatchelfIgnoreMissingDeps = [
+          "libamdhip64.so.6"
+          "libamdhip64.so.7"
+        ];
+
+        nativeBuildInputs = (prevAttrs.nativeBuildInputs or []) ++ [pkgs.autoAddDriverRunpath];
+
+        buildInputs = (prevAttrs.buildInputs or []) ++ [
+          pkgs.zlib
+          pkgs.zstd
+          pkgs.rocmPackages.rocblas
+          pkgs.rocmPackages.rocsolver
+          pkgs.rocmPackages.rocm-runtime
+          pkgs.rocmPackages.rocsparse
+          pkgs.rocmPackages.rocfft
+          pkgs.rocmPackages.miopen
+          pkgs.rocmPackages.hipblas
+        ];
+
+        # torchvision's _meta_registrations.py tries to register fake ops for operators
+        # like torchvision::nms, but on ROCm the C++ extension doesn't load them the same
+        # way. We wrap the entire module in a try/except so the import doesn't crash.
+        postInstall = (prevAttrs.postInstall or "") + ''
+          meta_reg="$out/${python.sitePackages}/torchvision/_meta_registrations.py"
+          if [ -f "$meta_reg" ]; then
+            echo "Patching torchvision _meta_registrations.py for ROCm compatibility..."
+            ${pkgs.python312}/bin/python3 -c "
+import textwrap, sys
+path = sys.argv[1]
+with open(path) as f:
+    original = f.read()
+# Wrap everything after the imports in a try/except
+# Find the first @torch.library line and wrap from there
+lines = original.split('\n')
+wrap_start = None
+for i, line in enumerate(lines):
+    if '@torch.library.register_fake' in line:
+        wrap_start = i
+        break
+if wrap_start is not None:
+    header = '\n'.join(lines[:wrap_start])
+    body = '\n'.join(lines[wrap_start:])
+    indented = textwrap.indent(body, '    ')
+    patched = header + '\ntry:\n' + indented + '\nexcept (RuntimeError, AttributeError):\n    pass  # C++ ops not registered on ROCm, fake registrations not needed\n'
+    with open(path, 'w') as f:
+        f.write(patched)
+    print('Patched successfully')
+else:
+    print('No register_fake found, skipping patch')
+" "$meta_reg"
+          fi
+        '';
       })
     );
 
@@ -132,8 +203,7 @@ in
           torch
         ];
 
-        # Torchaudio automatically selects between ffmpeg 6, 5 and 4 -
-        # we provide 6, so ignore the missing ffmpeg 4 and 5
+        # We provide ffmpeg 6 and don't need ROCm HIP for audio (falls back to CPU)
         autoPatchelfIgnoreMissingDeps = [
           # ffmpeg 5
           "libavutil.so.57"
@@ -150,32 +220,67 @@ in
           "libavfilter.so.7"
           "libavutil.so.56"
           "libavdevice.so.58"
+
+          # ROCm 7.x HIP libraries (torchaudio falls back to CPU if missing)
+          "libMIOpen.so.1"
+          "libhipblas.so.3"
+          "libhipfft.so.0"
+          "libhipsparse.so.4"
+          "libhipsolver.so.1"
         ];
       })
     );
 
     bitsandbytes = (
       prev.bitsandbytes.overridePythonAttrs (prev: {
-        # Available at runtime if, and only if, CUDA is loaded -
-        # but also only required if its loaded either way, so we
-        # ignore these dependencies
+        # bitsandbytes ships with multiple backend libraries for different hardware
+        # (CUDA 11/12/13, ROCm 6.x/7.x, Intel XPU). It selects automatically at runtime.
         autoPatchelfIgnoreMissingDeps = [
-          # CUDA 11.x dependencies (original)
+          # CUDA 11.x
           "libcudart.so.11.0"
           "libcublas.so.11"
           "libcusparse.so.11"
           "libcublasLt.so.11"
 
-          # NOTE: CUDA 12.x dependencies for newer bitsandbytes versions
-          # These are not available on AMD ROCm systems but are optional
+          # CUDA 12.x
           "libcudart.so.12"
           "libcublas.so.12"
           "libcusparse.so.12"
           "libcublasLt.so.12"
+          "libnvJitLink.so.12"
+
+          # CUDA 13.x
+          "libcudart.so.13"
+          "libcublas.so.13"
+          "libcusparse.so.13"
+          "libcublasLt.so.13"
+          "libnvJitLink.so.13"
+
+          # ROCm 6.x
+          "libhipblas.so.2"
+          "libhipsparse.so.1"
+          "libhipblaslt.so.0"
+
+          # ROCm 7.x
+          "libhipblas.so.3"
+          "libhipsparse.so.4"
+
+          # Intel XPU
+          "libirng.so"
+          "libimf.so"
+          "libintlc.so.5"
+          "libsycl.so.8"
+          "libsvml.so"
         ];
       })
     );
     
+    # comfy-aimdo ships a native .so that expects libcuda.so.1 (provided by the driver at runtime)
+    comfy-aimdo = prev.comfy-aimdo.overridePythonAttrs (prevAttrs: {
+      autoPatchelfIgnoreMissingDeps = ["libcuda.so.1"];
+      nativeBuildInputs = (prevAttrs.nativeBuildInputs or []) ++ [pkgs.autoAddDriverRunpath];
+    });
+
     numba = withExtraDependencies prev.numba (let
       tbb = 
         if pkgs ? tbb_2022

@@ -29,8 +29,9 @@ in {
   rocm = mkWebuiDistrib {
     source = raw;
     python = pkgs.python311;
+    # Filter out bitsandbytes for ROCm - it expects CUDA and causes import issues
     additionalRequirements =
-      raw.additionalRequirements
+      (builtins.filter (r: r.name != "bitsandbytes") raw.additionalRequirements)
       ++ [
         # AI-NOTE: PyTorch 2.11.0 with ROCm 7.2 - matches nixpkgs ROCm 7.2.1 system libs
         {
