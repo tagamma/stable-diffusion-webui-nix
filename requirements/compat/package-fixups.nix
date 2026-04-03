@@ -103,11 +103,11 @@ in
         autoPatchelfIgnoreMissingDeps = ["libcuda.so.1"];
         nativeBuildInputs = (prev.nativeBuildInputs or []) ++ [pkgs.autoAddDriverRunpath];
 
-        # Additional dependencies for ROCm 6.4 wheels
+        # Additional dependencies for ROCm 7.2 wheels
         dependencies =
           (prev.dependencies or [])
           ++ [
-            # Compression libraries required by ROCm 6.4
+            # Compression libraries required by ROCm wheels
             pkgs.zlib # libz.so.1
             pkgs.zstd # libzstd.so.1
             pkgs.xz # liblzma.so.5
@@ -217,8 +217,8 @@ in
       ]
     );
 
-    # ROCm specific stuff
-    pytorch-triton-rocm = withExtraDependencies prev.pytorch-triton-rocm [
+    # ROCm specific stuff - triton-rocm (renamed from pytorch-triton-rocm in torch 2.11+)
+    triton-rocm = withExtraDependencies prev.triton-rocm [
       pkgs.zlib # libz.so.1
       pkgs.zstd # libzstd.so.1
       pkgs.xz # liblzma.so.5

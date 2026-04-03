@@ -1601,21 +1601,19 @@
       "version": "1.9.4"
     },
     {
-      "dependencies": [
-        "setuptools"
-      ],
+      "dependencies": [],
       "enabled_extras": [],
-      "name": "pytorch-triton-rocm",
+      "name": "triton-rocm",
       "source": {
         "hashes": {
-          "sha256": "b0362725d8e16d185251e3dcd48455ebf9cdaad2c26052bb47ef08a1d687ed20"
+          "sha256": "3286c59eb97e65ab705e207689b6a47807cb73a27ce53e9e774e46bab01318fe"
         },
         "is_wheel": true,
         "urls": [
-          "https://download.pytorch.org/whl/pytorch_triton_rocm-3.4.0-cp311-cp311-linux_x86_64.whl"
+          "https://download.pytorch.org/whl/triton_rocm-3.6.0-cp311-cp311-linux_x86_64.whl"
         ]
       },
-      "version": "3.4.0"
+      "version": "3.6.0"
     },
     {
       "dependencies": [],
@@ -2114,22 +2112,22 @@
         "fsspec",
         "jinja2",
         "networkx",
-        "pytorch-triton-rocm",
         "sympy",
-        "typing-extensions"
+        "typing-extensions",
+        "triton-rocm"
       ],
       "enabled_extras": [],
       "name": "torch",
       "source": {
         "hashes": {
-          "sha256": "2d35c37d15a0eb61ceab94dffae9399cab1b4a0d64668e4405025b5ce65df033"
+          "sha256": "e86e64dc070eebe40bd7d7d397b418f3e16a528ed91495efcfbbe430ba3bb45d"
         },
         "is_wheel": true,
         "urls": [
-          "https://download.pytorch.org/whl/rocm6.4/torch-2.8.0%2Brocm6.4-cp311-cp311-manylinux_2_28_x86_64.whl"
+          "https://download.pytorch.org/whl/rocm7.2/torch-2.11.0%2Brocm7.2-cp311-cp311-manylinux_2_28_x86_64.whl"
         ]
       },
-      "version": "2.8.0+rocm6.4"
+      "version": "2.11.0+rocm7.2"
     },
     {
       "dependencies": [
@@ -2199,14 +2197,14 @@
       "name": "torchvision",
       "source": {
         "hashes": {
-          "sha256": "23c049987ed53eedbbb5957b720cfcad0f4c1746be044b85dc6664f1b62716d0"
+          "sha256": "2104e5a357e32bd9260a32149af8ba0a5873dc579d6fe86b23b704c03111c277"
         },
         "is_wheel": true,
         "urls": [
-          "https://download.pytorch.org/whl/rocm6.4/torchvision-0.23.0%2Brocm6.4-cp311-cp311-manylinux_2_28_x86_64.whl"
+          "https://download.pytorch.org/whl/rocm7.2/torchvision-0.26.0%2Brocm7.2-cp311-cp311-manylinux_2_28_x86_64.whl"
         ]
       },
-      "version": "0.23.0+rocm6.4"
+      "version": "0.26.0+rocm7.2"
     },
     {
       "dependencies": [],

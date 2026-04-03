@@ -32,18 +32,17 @@ in {
     additionalRequirements =
       raw.additionalRequirements
       ++ [
-        # NOTE: Use stable PyTorch 2.8.0 with ROCm 6.4
+        # AI-NOTE: PyTorch 2.11.0 with ROCm 7.2 - matches nixpkgs ROCm 7.2.1 system libs
         {
           name = "torch";
-          spec = "2.8.0+rocm6.4";
+          spec = "2.11.0+rocm7.2";
         }
         {
           name = "torchvision";
-          spec = "0.23.0+rocm6.4";
+          spec = "0.26.0+rocm7.2";
         }
-        # AI-NOTE: Triton issues will be handled by global overlay
       ];
-    additionalPipArgs = ["--extra-index-url" "https://download.pytorch.org/whl/rocm6.4/"];
+    additionalPipArgs = ["--extra-index-url" "https://download.pytorch.org/whl/rocm7.2/"];
 
     installInstructions = ./install-instructions-rocm.json;
 

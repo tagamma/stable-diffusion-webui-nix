@@ -11,8 +11,8 @@
     src = fetchFromGitHub {
       owner = "comfyanonymous";
       repo = "ComfyUI";
-      rev = "v0.3.57";
-      hash = "sha256-uqGqiPNGLM7rlyfNwRhXSqYQOiA11JGitF4RGNQowjc=";
+      rev = "v0.18.3";
+      hash = "sha256-ivyNuXXJJtmaXPgEJAwCESa+QgGzXawwQUw6m9A3X0o=";
     };
 
     patches = [];
@@ -44,7 +44,7 @@ in {
       {
         name = "transformers";
         op = ">=";
-        spec = "4.49.1";
+        spec = "4.50.3";
       }
       {
         name = "jax";
@@ -81,7 +81,7 @@ in {
   # AI-NOTE: ROCm variant for AMD GPU support
   rocm = mkWebuiDistrib {
     source = sourceDerivation;
-    python = pkgs.python311; # Match Forge's Python version
+    python = pkgs.python312;
 
     additionalRequirements = [
       # Base requirements (same as CUDA)
@@ -98,7 +98,7 @@ in {
       {
         name = "transformers";
         op = ">=";
-        spec = "4.49.1";
+        spec = "4.50.3";
       }
       {
         name = "jax";
@@ -124,18 +124,18 @@ in {
       {name = "sageattention";}
       {name = "timm";}
 
-      # ROCm-specific torch versions - stable PyTorch 2.8.0 with ROCm 6.4
+      # AI-NOTE: PyTorch 2.11.0 with ROCm 7.2 - matches nixpkgs ROCm 7.2.1 system libs
       {
         name = "torch";
-        spec = "2.8.0+rocm6.4";
+        spec = "2.11.0+rocm7.2";
       }
       {
         name = "torchvision";
-        spec = "0.23.0+rocm6.4";
+        spec = "0.26.0+rocm7.2";
       }
     ];
 
-    additionalPipArgs = ["--extra-index-url" "https://download.pytorch.org/whl/rocm6.4/"];
+    additionalPipArgs = ["--extra-index-url" "https://download.pytorch.org/whl/rocm7.2/"];
 
     installInstructions = ./install-instructions-rocm.json;
 

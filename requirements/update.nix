@@ -14,6 +14,7 @@ let
     pyPkgs.pip
     pyPkgs.virtualenv
     pyPkgs.wheel
+    pyPkgs.setuptools # Needed for legacy setup.py packages (CLIP uses pkg_resources)
   ]);
 
   # Transform the Nix objects into arguments that can be passed to pip
@@ -53,12 +54,12 @@ pkgs.writeShellScriptBin "stable-diffusion-webui-update-requirements" ''
   requirement_files=("${webuiPkgs.source}/${webuiPkgs.requirementsFileName}")
 
   echo "Creating virtual environment in $env_dir"
-  ${basic-python}/bin/python -m venv "$env_dir"
+  ${basic-python}/bin/python -m venv --system-site-packages "$env_dir"
   
   source "$env_dir/bin/activate"
 
-  echo "Temporarily installing wheel..."
-  python -m pip install wheel
+  echo "Temporarily installing wheel and setuptools..."
+  python -m pip install wheel setuptools
 
   echo "Installing dependencies..."
 
